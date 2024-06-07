@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     git \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    nano
+&& docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd mbstring mysqli pdo pdo_mysql xml opcache
 
 # Install Composer
