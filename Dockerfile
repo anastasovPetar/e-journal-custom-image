@@ -22,7 +22,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN mkdir -p /var/www/html \
     && mkdir -p /var/www/files \
     && cd /var/www/html \
-    && curl -sSL https://pkp.sfu.ca/ojs/download/ojs-3.4.tar.gz | tar -xz --strip-components=1
+    && curl -sSL https://pkp.sfu.ca/ojs/download/ojs-3.4.0-5.tar.gz | tar -xz --strip-components=1
 
 # Configure Nginx
 COPY nginx.conf /etc/nginx/nginx.conf
