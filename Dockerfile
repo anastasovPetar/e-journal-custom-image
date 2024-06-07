@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     git \
-    nano
-&& docker-php-ext-configure gd --with-freetype --with-jpeg \
+    nano \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd mbstring mysqli pdo pdo_mysql xml opcache
 
 # Install Composer
@@ -30,7 +30,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY ojs.conf /etc/nginx/sites-available/default
 
 # Set up permissions
-RUN chown -R www-data:www-data /var/www/html
+RUN chown -R www-data:www-data /var/www/html \
+    && chown -R www-data:www-data /var/www/files
 
 # Expose port 80 for Nginx
 EXPOSE 80
