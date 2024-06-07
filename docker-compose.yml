@@ -1,0 +1,37 @@
+version: '3.8'
+
+networks:
+  inside:
+
+services:
+  ojs:
+    build: .
+    container_name: ojs
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./volumes/private:/var/www/files
+      - ./volumes/public:/var/www/html/public
+    ports:
+      - "8880:80"
+    depends_on:
+      - db
+    networks:
+      - inside
+    restart: always
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:-ojsPwd}"
+      MYSQL_DATABASE: "${OJS_DB_NAME:-ojs}"
+      MYSQL_USER: "${OJS_DB_USER:-ojs}"
+      MYSQL_PASSWORD: "${OJS_DB_PASSWORD:-ojs}"
+    volumes:
+      - ./volumes/db:/var/lib/mysql
+      - ./volumes/dump:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    networks:
+      - inside
+    restart: always
