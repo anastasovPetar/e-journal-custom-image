@@ -29,6 +29,8 @@ services:
       - "80:80"
     volumes:
       - ./volumes/public:/var/www/html/public:ro
+      - ./volumes/private:/var/www/files
+      - ./volumes/public:/var/www/html
     depends_on:
       - ojs
     networks:
