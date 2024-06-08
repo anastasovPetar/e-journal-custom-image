@@ -9,6 +9,7 @@ services:
     container_name: ojs
     volumes:
       - /etc/localtime:/etc/localtime
+      - .volume/html:/var/www/html
       - ./volumes/private:/var/www/files
       - ./volumes/public:/var/www/html/public
     environment:
@@ -16,6 +17,8 @@ services:
       - DB_NAME=ojs
       - DB_USER=ojsuser
       - DB_PASS=ojspass
+    depends_on:
+      - db
     networks:
       - ojs-network
 
@@ -28,6 +31,7 @@ services:
     ports:
       - "80:80"
     volumes:
+      - .volume/html:/var/www/html
       - ./volumes/private:/var/www/files
       - ./volumes/public:/var/www/html
     depends_on:
