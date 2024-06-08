@@ -10,8 +10,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime
       - .volume/html:/var/www/html
-      - ./volumes/private:/var/www/files
-      - ./volumes/public:/var/www/html/public
+      # - ./volumes/private:/var/www/files
+      # - ./volumes/public:/var/www/html/public
     environment:
       - DB_HOST=db
       - DB_NAME=ojs
@@ -31,9 +31,10 @@ services:
     ports:
       - "80:80"
     volumes:
-      - .volume/html:/var/www/html
-      - ./volumes/private:/var/www/files
-      - ./volumes/public:/var/www/html
+      # - .volume/html:/var/www/html
+      # - ./volumes/private:/var/www/files
+      # - ./volumes/public:/var/www/html
+      - ./volume/html:/var/www/html:ro
     depends_on:
       - ojs
     networks:
