@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   ojs:
+    image: ojs-img
     build: 
       context: .
       dockerfile: ojs.Dockerfile
@@ -19,6 +20,7 @@ services:
       - ojs-network
 
   nginx:
+    image: nginx-img
     build:
       context: .
       dockerfile: nginx.Dockerfile
