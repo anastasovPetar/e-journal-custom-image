@@ -35,8 +35,8 @@ RUN curl -LO https://pkp.sfu.ca/ojs/download/ojs-3.4.0-5.tar.gz \
 # COPY config.inc.php /var/www/html/config.inc.php
 
 # Set file permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html 
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod -R 755 /var/www/html 
 
 
 #Creare directory for the file uploads and change permission
