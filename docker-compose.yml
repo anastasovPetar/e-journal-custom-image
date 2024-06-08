@@ -1,7 +1,5 @@
 version: '3.8'
 
-networks:
-  inside:
 
 services:
   ojs:
@@ -35,3 +33,7 @@ services:
     networks:
       - inside
     restart: always
+
+networks:
+  inside:
+
