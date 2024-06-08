@@ -9,8 +9,8 @@ services:
       - /etc/localtime:/etc/localtime
       - ./volumes/private:/var/www/files
       - ./volumes/public:/var/www/html/public
-    # ports:
-    #   - "8080:80"
+    ports:
+      - "8080:80"
     depends_on:
       - db
     networks:
@@ -28,8 +28,8 @@ services:
     volumes:
       - ./volumes/db:/var/lib/mysql
       - ./volumes/dump:/docker-entrypoint-initdb.d
-    # ports:
-    #   - "3306:3306"
+    ports:
+      - "3306:3306"
     networks:
       - inside
     restart: always
