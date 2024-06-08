@@ -4,7 +4,7 @@ FROM nginx:latest
 RUN apt-get update && apt-get install -y nano
 
 # Copy custom NGINX configuration file
-COPY nginx.conf /etc/nginx/nginx.conf
+# COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy site configuration file
 COPY ojs.conf /etc/nginx/conf.d/default.conf
