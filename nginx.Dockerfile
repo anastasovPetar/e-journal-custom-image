@@ -1,11 +1,13 @@
 # Use the official NGINX image as a base image
 FROM nginx:latest
 
+RUN apt-get update && apt-get install -y nano
+
 # Copy custom NGINX configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy site configuration file
-COPY ojs.conf /etc/nginx/conf.d/ojs.conf
+COPY ojs.conf /etc/nginx/conf.d/default.conf
 
 # Copy the entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/
