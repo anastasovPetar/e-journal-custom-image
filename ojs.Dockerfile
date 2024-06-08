@@ -1,6 +1,8 @@
 # Use the official PHP image as a base image
 FROM php:8.1-fpm
 
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 # Install required PHP extensions and other dependencies
 RUN apt-get update && apt-get install -y \
     libicu-dev \
