@@ -33,7 +33,7 @@ services:
     volumes:
       # - .volume/html:/var/www/html
       - ./volumes/html:/var/www/html:ro
-      - ./volumes/private:/var/www/files
+      - ./volumes/private:/var/www/files:rw
       # - ./volumes/public:/var/www/html
     depends_on:
       - ojs
