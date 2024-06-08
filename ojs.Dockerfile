@@ -34,10 +34,10 @@ RUN curl -LO https://pkp.sfu.ca/ojs/download/ojs-3.4.0-5.tar.gz \
     && rm ojs-3.4.0-5.tar.gz
 
 # Install Composer Deps and NPM
-RUN composer update -d lib/pkp --no-dev && \
-    composer install -d plugins/paymethod/paypal --no-dev && \
-    composer install -d plugins/generic/citationStyleLanguage --no-dev && \
-    npm install -y && npm run build 
+RUN composer update -d lib/pkp --no-dev
+RUN composer install -d plugins/paymethod/paypal --no-dev
+RUN composer install -d plugins/generic/citationStyleLanguage --no-dev
+RUN npm install -y && npm run build 
 
 # Copy custom configuration and other files if necessary
 # COPY config.inc.php /var/www/html/config.inc.php
