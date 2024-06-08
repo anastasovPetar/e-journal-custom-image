@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) intl gd xml zip mysqli pdo pdo_mysql opcache \
     && pecl install apcu \
     && docker-php-ext-enable apcu
+&& rm -rf /var/lib/apt/lists/*
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
