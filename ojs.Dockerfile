@@ -33,15 +33,14 @@ RUN curl -sSL https://pkp.sfu.ca/ojs/download/ojs-3.4.0-5.tar.gz | tar -xz --str
 # Copy custom configuration and other files if necessary
 # COPY config.inc.php /var/www/html/config.inc.php
 
-#Creare directory for the file uploads
-RUN mkdir -p /var/www/files
-
 # Set file permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html \
     && chown -R www-data:www-data /var/www/files \
     && chmod -R 775 /var/www/files
 
+#Creare directory for the file uploads
+RUN mkdir -p /var/www/files
 # Expose the port OJS will run on
 EXPOSE 9000
 
