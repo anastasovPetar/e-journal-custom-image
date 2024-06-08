@@ -27,8 +27,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 
 # Download and extract OJS
-RUN curl -LO https://pkp.sfu.ca/ojs/download/ojs-3.4.0-5.tar.gz  \
-    && tar -xzf ojs-3.4.0-5.tar.gz --strip-components=1 \
+RUN curl -sSL https://pkp.sfu.ca/ojs/download/ojs-3.4.0-5.tar.gz | tar -xz --strip-components=1 \
     && rm ojs-3.4.0-5.tar.gz
 
 # Copy custom configuration and other files if necessary
