@@ -15,6 +15,8 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     nano \
+    php-xml \
+    php-mbstring \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-install -j$(nproc) intl gd xml zip mysqli pdo pdo_mysql opcache \
     && pecl install apcu \
