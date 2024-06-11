@@ -7,6 +7,8 @@ services:
       context: .
       dockerfile: ojs.Dockerfile
     container_name: ojs
+    ports:
+      - 8000:80
     volumes:
       - /etc/localtime:/etc/localtime
       - ./volumes/html:/var/www/html
@@ -30,10 +32,10 @@ services:
     container_name: nginx
     ports:
       - "80:80"
-    volumes:
+    #volumes:
       # - .volume/html:/var/www/html
-      - ./volumes/html:/var/www/html:ro
-      - ./volumes/private:/var/www/files:rw
+      # - ./volumes/html:/var/www/html:ro
+      # - ./volumes/private:/var/www/files:rw
       # - ./volumes/public:/var/www/html
     depends_on:
       - ojs
