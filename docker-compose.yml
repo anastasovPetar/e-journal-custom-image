@@ -11,9 +11,8 @@ services:
       - 8000:80
     volumes:
       - /etc/localtime:/etc/localtime
-      #- ./volumes/html:/var/www/html
+      - ./volumes/html:/var/www/html
       - ./volumes/uploads:/var/www/files
-      - ./volumes/public:/var/www/html/public
     environment:
       - DB_HOST=db
       - DB_NAME=ojs
