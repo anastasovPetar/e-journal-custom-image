@@ -37,16 +37,22 @@ RUN a2enmod rewrite
 #COPY . /var/www/html
 
 # Set working directory than download
-WORKDIR /var/www
+WORKDIR /var/www/html
 
 #download ojs and extract
-RUN curl -LO https://pkp.sfu.ca/ojs/download/ojs-3.4.0-5.tar.gz \
-    && tar -xzf ojs-3.4.0-5.tar.gz --strip-components=1 
-# && rm ojs-3.4.0-5.tar.gz
+RUN curl -LO https://pkp.sfu.ca/ojs/download/ojs-3.4.0-5.tar.gz && \
+    tar -xzf ojs-3.4.0-5.tar.gz --strip-components=1 && \
+    rm ojs-3.4.0-5.tar.gz
+
+#make the files folder-for upload
+RUN mkdir -p /var/www/files
 
 # Set permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html $$ \
+    chown -R www-data:www-data /var/www/files && \
+    chmod -R 775 /var/www/files
+
 
 # Expose port 80
 EXPOSE 80
