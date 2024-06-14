@@ -48,10 +48,14 @@ RUN curl -LO https://pkp.sfu.ca/ojs/download/ojs-3.4.0-5.tar.gz && \
 RUN mkdir -p /var/www/files
 
 # Set permissions
-RUN chown -R www-data:www-data /var/www/html && \
-    chmod -R 755 /var/www/html $$ \
-    chown -R www-data:www-data /var/www/files && \
-    chmod -R 775 /var/www/files
+# RUN chown -R www-data:www-data /var/www/html && \
+#     chmod -R 755 /var/www/html
+
+# RUN chown -R www-data:www-data /var/www/html/public && \
+#     chmod -R 755 /var/www/html/public
+
+# RUN chown -R www-data:www-data /var/www/files && \
+#     chmod -R 775 /var/www/files
 
 
 # Expose port 80
