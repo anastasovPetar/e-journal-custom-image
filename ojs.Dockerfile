@@ -36,6 +36,9 @@ RUN a2enmod rewrite
 # Copy OJS source code
 #COPY . /var/www/html
 
+#make the files folder-for upload
+RUN mkdir -p /var/www/files
+
 # Set working directory than download
 WORKDIR /var/www/html
 
@@ -44,8 +47,6 @@ RUN curl -LO https://pkp.sfu.ca/ojs/download/ojs-3.4.0-5.tar.gz && \
     tar -xzf ojs-3.4.0-5.tar.gz --strip-components=1 && \
     rm ojs-3.4.0-5.tar.gz
 
-#make the files folder-for upload
-RUN mkdir -p /var/www/files
 
 # Set permissions
 # RUN chown -R www-data:www-data /var/www/html && \
@@ -57,6 +58,14 @@ RUN mkdir -p /var/www/files
 # RUN chown -R www-data:www-data /var/www/files && \
 #     chmod -R 775 /var/www/files
 
+# Copy the entrypoint script into the image
+COPY entrypoint.sh /usr/local/bin/
+
+# Ensure the script is executable
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Set the entrypoint to the script
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 # Expose port 80
 EXPOSE 80
