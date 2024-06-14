@@ -1,37 +1,59 @@
 version: '3.8'
 
-networks:
-  inside:
-
 services:
   ojs:
-    build: .
+    image: ojs-img
+    build: 
+      context: .
+      dockerfile: ojs.Dockerfile
     container_name: ojs
+    ports:
+      - 8000:80
     volumes:
       - /etc/localtime:/etc/localtime
-      - ./volumes/private:/var/www/files
       - ./volumes/public:/var/www/html/public
-    ports:
-      - "8080:80"
+      - ./volumes/uploads:/var/www/files
+    environment:
+      - DB_HOST=db
+      - DB_NAME=ojs
+      - DB_USER=ojsuser
+      - DB_PASS=ojspass
     depends_on:
       - db
     networks:
-      - inside
-    restart: always
+      - ojs-network
+
+  nginx:
+    image: nginx-img
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      # - .volume/html:/var/www/html
+      # - ./volumes/html:/var/www/html:ro
+      # - ./volumes/private:/var/www/files:rw
+      - ./volumes/public:/var/www/html/public
+    depends_on:
+      - ojs
+    networks:
+      - ojs-network
 
   db:
     image: mysql:8.0
     container_name: db
     environment:
-      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:-ojsPwd}"
-      MYSQL_DATABASE: "${OJS_DB_NAME:-ojs}"
-      MYSQL_USER: "${OJS_DB_USER:-ojs}"
-      MYSQL_PASSWORD: "${OJS_DB_PASSWORD:-ojs}"
+      - MYSQL_DATABASE=ojs
+      - MYSQL_USER=ojsuser
+      - MYSQL_PASSWORD=ojspass
+      - MYSQL_ROOT_PASSWORD=rootpass
     volumes:
       - ./volumes/db:/var/lib/mysql
       - ./volumes/dump:/docker-entrypoint-initdb.d
-    ports:
-      - "3306:3306"
     networks:
-      - inside
-    restart: always
+      - ojs-network
+
+networks:
+  ojs-network:
