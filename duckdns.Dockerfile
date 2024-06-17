@@ -10,7 +10,7 @@ RUN mkdir -p /opt/duckdns
 COPY duckdns.entrypoint.sh /opt/duckdns/duckdns.entrypoint.sh
 
 # Make the script executable
-RUN chmod +x /opt/duckdns/entrypoint.sh
+RUN chmod +x /opt/duckdns/duckdns.entrypoint.sh
 
 # Set the entrypoint
 ENTRYPOINT ["/opt/duckdns/duckdns.entrypoint.sh"]
