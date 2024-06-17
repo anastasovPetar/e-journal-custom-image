@@ -54,6 +54,15 @@ services:
       - ./volumes/dump:/docker-entrypoint-initdb.d
     networks:
       - ojs-network
+  
+  duckdns:
+    image: duckdns-img
+    build: 
+      context: .
+      dockerfile: duckdns.Dockerfile
+    container_name: duckdns
+    networks:
+      - ojs-network
 
 networks:
   ojs-network:
