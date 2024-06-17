@@ -7,7 +7,7 @@ RUN apk --no-cache add curl
 RUN mkdir -p /opt/duckdns
 
 # Create a shell script to run the DuckDNS update command
-RUN echo 'echo url="https://www.duckdns.org/update?domains=exampledomain&token=a7c4d0ad-114e-40ef-ba1d-d217904a50f2&ip=" | curl -k -o /opt/duckdns/duck.log -K -' > /opt/duckdns/update.sh
+RUN echo 'echo url="https://www.duckdns.org/update?domains=custom-ojs&token=6f3dd185-cfcd-4f88-a35b-b0ed7ab9f45e&ip=" | curl -k -o ~/duckdns/duck.log -K -' > /opt/duckdns/update.sh
 
 # Make the script executable
 RUN chmod +x /opt/duckdns/update.sh
