@@ -1,5 +1,5 @@
+.env
 volumes/db/
 volumes/private/
 volumes/public/
 volumes/html/
-.env
