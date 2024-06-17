@@ -7,11 +7,11 @@ RUN apk --no-cache add curl bash
 RUN mkdir -p /opt/duckdns
 
 # Copy entrypoint script
-COPY entrypoint.sh /opt/duckdns/entrypoint.sh
+COPY duckdns.entrypoint.sh /opt/duckdns/duckdns.entrypoint.sh
 
 # Make the script executable
 RUN chmod +x /opt/duckdns/entrypoint.sh
 
 # Set the entrypoint
-ENTRYPOINT ["/opt/duckdns/entrypoint.sh"]
+ENTRYPOINT ["/opt/duckdns/duckdns.entrypoint.sh"]
 
