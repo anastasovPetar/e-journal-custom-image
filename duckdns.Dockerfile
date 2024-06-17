@@ -1,18 +1,17 @@
 FROM alpine:latest
 
-# Install curl
-RUN apk --no-cache add curl
+# Install curl and other necessary tools
+RUN apk --no-cache add curl bash
 
 # Create a directory for DuckDNS
 RUN mkdir -p /opt/duckdns
 
-# Create a shell script to run the DuckDNS update command
-RUN echo 'echo url="https://www.duckdns.org/update?domains=custom-ojs&token=6f3dd185-cfcd-4f88-a35b-b0ed7ab9f45e&ip=" | curl -k -o /opt/duckdns/duck.log -K -' > /opt/duckdns/update.sh
+# Copy entrypoint script
+COPY entrypoint.sh /opt/duckdns/entrypoint.sh
+
 # Make the script executable
-RUN chmod +x /opt/duckdns/update.sh
+RUN chmod +x /opt/duckdns/entrypoint.sh
 
-# Set the script to run every 5 minutes using crontab
-RUN echo "*/5 * * * * /opt/duckdns/update.sh" > /etc/crontabs/root
+# Set the entrypoint
+ENTRYPOINT ["/opt/duckdns/entrypoint.sh"]
 
-# Start cron daemon
-CMD ["crond", "-f"]
