@@ -9,6 +9,9 @@ RUN mkdir -p /opt/duckdns
 # Copy entrypoint script
 COPY duckdns.entrypoint.sh /opt/duckdns/duckdns.entrypoint.sh
 
+# Copy .env file
+COPY .env /opt/duckdns/.env
+
 # Make the script executable
 RUN chmod +x /opt/duckdns/duckdns.entrypoint.sh
 
