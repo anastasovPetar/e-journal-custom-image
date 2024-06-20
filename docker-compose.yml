@@ -34,12 +34,7 @@ services:
   #   # volumes:
   #     # - .volume/html:/var/www/html
   #     # - ./volumes/html:/var/www/html:ro
-  #     # - ./volumes/private:/var/www/files:rw
-  #     # - ./volumes/public:/var/www/html/public
-  #   depends_on:
-  #     - ojs
-  #   networks:
-  #     - ojs-network
+  #    
 
   db:
     image: mysql:8.0
