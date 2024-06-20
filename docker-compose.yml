@@ -23,23 +23,23 @@ services:
     networks:
       - ojs-network
 
-  nginx:
-    image: nginx-img
-    build:
-      context: .
-      dockerfile: nginx.Dockerfile
-    container_name: nginx
-    ports:
-      - "80:80"
-    # volumes:
-      # - .volume/html:/var/www/html
-      # - ./volumes/html:/var/www/html:ro
-      # - ./volumes/private:/var/www/files:rw
-      # - ./volumes/public:/var/www/html/public
-    depends_on:
-      - ojs
-    networks:
-      - ojs-network
+  # nginx:
+  #   image: nginx-img
+  #   build:
+  #     context: .
+  #     dockerfile: nginx.Dockerfile
+  #   container_name: nginx
+  #   ports:
+  #     - "80:80"
+  #   # volumes:
+  #     # - .volume/html:/var/www/html
+  #     # - ./volumes/html:/var/www/html:ro
+  #     # - ./volumes/private:/var/www/files:rw
+  #     # - ./volumes/public:/var/www/html/public
+  #   depends_on:
+  #     - ojs
+  #   networks:
+  #     - ojs-network
 
   db:
     image: mysql:8.0
