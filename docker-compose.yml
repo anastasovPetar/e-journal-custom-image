@@ -35,17 +35,19 @@ services:
   #     # - .volume/html:/var/www/html
   #     # - ./volumes/html:/var/www/html:ro
   #    
-  nginx-proxy:
-    image: 'jc21/nginx-proxy-manager:latest'
-    container_name: nginx-proxy
-    restart: unless-stopped
-    ports:
-      - '80:80'
-      - '81:81'
-      - '443:443'
-    volumes:
-      - ./volumes:/data
-      - ./volumes/letsencrypt:/etc/letsencrypt
+  # nginx-proxy:
+  #   image: 'jc21/nginx-proxy-manager:latest'
+  #   container_name: nginx-proxy
+  #   restart: unless-stopped
+  #   ports:
+  #     - '80:80'
+  #     - '82:81'
+  #     - '443:443'
+  #   volumes:
+  #     - ./volumes/jc21:/data
+  #     - ./volumes/letsencrypt:/etc/letsencrypt
+  #   networks:
+  #     - ojs-network
   
   db:
     image: mysql:8.0
