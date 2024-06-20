@@ -23,17 +23,19 @@ services:
     networks:
       - ojs-network
 
-  # nginx:
-  #   image: nginx-img
-  #   build:
-  #     context: .
-  #     dockerfile: nginx.Dockerfile
-  #   container_name: nginx
-  #   ports:
-  #     - "80:80"
-  #   # volumes:
-  #     # - .volume/html:/var/www/html
-  #     # - ./volumes/html:/var/www/html:ro
+  nginx:
+    image: nginx-img
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    container_name: nginx
+    ports:
+      - "80:80"
+    # volumes:
+      # - .volume/html:/var/www/html
+      # - ./volumes/html:/var/www/html:ro
+    networks:
+      - ojs-network
   #    
   # nginx-proxy:
   #   image: 'jc21/nginx-proxy-manager:latest'
