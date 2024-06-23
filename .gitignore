@@ -1,3 +1,4 @@
+.env
 volumes/db/
 volumes/private/
 volumes/public/
