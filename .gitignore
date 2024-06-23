@@ -8,6 +8,5 @@ volumes/letsencrypt-acme-challange/
 volumes/logs/
 volumes/jc21/
 volumes/nginx/
-
 volumes/keys*
 volumes/database.sqlite
