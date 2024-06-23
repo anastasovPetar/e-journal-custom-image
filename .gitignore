@@ -2,3 +2,6 @@ volumes/db/
 volumes/private/
 volumes/public/
 volumes/html/
+volumes/jc21/
+volumes/letsencrypt
+volumes/logs/
